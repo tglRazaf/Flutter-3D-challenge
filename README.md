@@ -2,8 +2,5 @@
 
 A flutter project for testing the ability to load/control 3D object on flutter.
 
-<!-- <video src='./example_video.mp4' autoplay loop controls width="180"/> -->
+https://github.com/tglRazaf/Flutter-3D-challenge/assets/69616083/f1cc13ae-3724-4049-aa3f-9bb77cafc437
 
-<video height="360" autoplay muted loop>
-    <source src="./example_video.mp4" type="video/mp4">
-</video>
