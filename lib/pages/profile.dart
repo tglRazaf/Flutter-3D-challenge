@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_three_challenge/pages/home.dart';
-import 'package:model_viewer_plus/model_viewer_plus.dart';
+import 'package:o3d/o3d.dart';
 import '../core/constants.dart';
 
 class Profile extends StatefulWidget {
@@ -29,7 +28,7 @@ class _ProfileState extends State<Profile> with AutomaticKeepAliveClientMixin {
                     color: const Color.fromARGB(255, 253, 234, 208),
                     child: Stack(
                       children: [
-                        const ModelViewer(
+                        const O3D(
                           src:
                               'assets/three_object/elinalise_dragonroad_musyoku_tensei.glb',
                           autoRotate: false,

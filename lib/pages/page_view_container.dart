@@ -64,12 +64,13 @@ class _PageViewContainerState extends State<PageViewContainer> {
   }
 
   void _changePage(int index) {
-    _pageController.animateToPage(index,
-        duration: Duration(milliseconds: (index - _selectedIndex).abs() * 1000),
-        curve: Curves.easeInOut);
-    if (index == 1) {
-      Provider.of<CharacterMovinProvider>(context, listen: false).rotate(45);
-    }
+    Provider.of<CharacterMovinProvider>(context, listen: false)
+              .reverseOrbitAnimation();
+    _pageController.animateToPage(
+      index,
+      duration: Duration(milliseconds: (index - _selectedIndex).abs() * 2000),
+      curve: Curves.easeInOut,
+    );
     setState(() {
       _selectedIndex = index;
     });

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:model_viewer_plus/model_viewer_plus.dart';
+import 'package:o3d/o3d.dart';
 
 class CharacterMovin extends StatefulWidget {
   const CharacterMovin({super.key});
@@ -12,11 +12,38 @@ class _CharacterMovinState extends State<CharacterMovin>
     with SingleTickerProviderStateMixin {
   final ValueNotifier<double> rotationValueNotifier =
       ValueNotifier<double>(0.0);
+  O3DController? controller;
+
+  late AnimationController _animationController;
+  late Animation<double> _animation;
+
+  double camera = 0.5;
 
   @override
   void initState() {
     super.initState();
-    animateRotation();
+
+    controller = O3DController();
+
+    // Create an animation controller
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 15),
+      vsync: this,
+    );
+
+    // Create a Tween for the animation
+    _animation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(_animationController);
+    // Start the animation
+    listenAnimation();
+  }
+
+  void listenAnimation() {
+    _animationController.addListener(() {
+      controller!.cameraTarget(_animation.value, 1.15, 0);
+    });
   }
 
   @override
@@ -30,13 +57,13 @@ class _CharacterMovinState extends State<CharacterMovin>
           child: AnimatedBuilder(
             animation: rotationValueNotifier,
             builder: (context, child) {
-              return ModelViewer(
+              return O3D(
+                controller: controller,
+                autoPlay: true,
+                autoRotate: false,
+                cameraControls: false,
                 src:
                     'assets/three_object/elinalise_dragonroad_musyoku_tensei.glb',
-                autoRotate: false,
-                autoPlay: true,
-                cameraControls: false,
-                orientation: "0deg 0deg ${rotationValueNotifier.value}deg",
               );
             },
           ),

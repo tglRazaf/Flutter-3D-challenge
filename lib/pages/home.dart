@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_three_challenge/core/constants.dart';
-import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:provider/provider.dart';
 
 import '../core/providers/character_movin_provider.dart';
+import 'widget/shared_character.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
+
 
   @override
   Widget build(BuildContext context) {
@@ -63,15 +64,7 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
                       alignment: Alignment.topCenter,
                       child: SizedBox(
                         height: MediaQuery.sizeOf(context).height * .62,
-                        child: const ModelViewer(
-                          src:
-                              'assets/three_object/elinalise_dragonroad_musyoku_tensei.glb',
-                          autoRotate: false,
-                          autoPlay: true,
-                          cameraControls: false,
-                          touchAction: TouchAction.none,
-                          orientation: "0deg 0deg 0deg",
-                        ),
+                        child: const SharedCharacter(),
                       ),
                     ),
                   ],
@@ -137,6 +130,10 @@ class _HomeState extends State<Home> with AutomaticKeepAliveClientMixin {
               ),
             )
           ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: Provider.of<CharacterMovinProvider>(context, listen: false).reverseOrbitAnimation,
+          child: const Icon(Icons.rotate_left),
         ),
       ),
     );

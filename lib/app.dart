@@ -1,9 +1,7 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_three_challenge/core/constants.dart';
 import 'package:provider/provider.dart';
 import 'core/providers/character_movin_provider.dart';
-import 'injection.dart';
 import 'pages/page_view_container.dart';
 
 class App extends StatelessWidget {
@@ -13,7 +11,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => getIt<CharacterMovinProvider>()),
+        ChangeNotifierProvider(create: (context) => CharacterMovinProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -23,16 +21,6 @@ class App extends StatelessWidget {
           primarySwatch: Colors.blue,
           useMaterial3: true,
           scaffoldBackgroundColor: scaffoldBackgroundColor,
-          pageTransitionsTheme: const PageTransitionsTheme(
-            builders: {
-              TargetPlatform.android: SharedAxisPageTransitionsBuilder(
-                transitionType: SharedAxisTransitionType.horizontal,
-              ),
-              TargetPlatform.iOS: SharedAxisPageTransitionsBuilder(
-                transitionType: SharedAxisTransitionType.horizontal,
-              ),
-            },
-          ),
         ),
       ),
     );

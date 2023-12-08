@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_three_challenge/core/constants.dart';
-import 'package:model_viewer_plus/model_viewer_plus.dart';
 
 import 'widget/character_movin.dart';
 
